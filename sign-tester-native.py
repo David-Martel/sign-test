@@ -15,14 +15,17 @@ def verify_signature_in_file(input_file, verbose=False):
         mime_type, _ = mimetypes.guess_type(input_file)
         if mime_type is None:
             if verbose:
-                print(f"Cannot determine the file type of '{input_file}'. Skipping.")
+                print(f"'{input_file}' unknown. Skipping.")
             return
 
         # Supported file types
-        supported_types = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
+        supported_types = [
+            'application/pdf',
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+            ]
         if mime_type not in supported_types:
             if verbose:
-                print(f"'{input_file}' is not a supported file type. Skipping.")
+                print(f"'{input_file}' is not a supported.")
             return
 
         # Read the contents of the input file
