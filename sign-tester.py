@@ -4,10 +4,12 @@ import json
 import subprocess
 import argparse
 
+
 def check_file_for_signatures(input_file, verbose=False):
     try:
         # Use the "sigcheck" tool to check if the file has digital signatures
-        result = subprocess.run(['sigcheck', '-e', input_file], capture_output=True, text=True, check=True)
+        result = subprocess.run(['sigcheck', '-e', input_file],
+                                capture_output=True, text=True, check=True)
         output = result.stdout
 
         # Parse the output to extract certificate information
@@ -32,11 +34,13 @@ def check_file_for_signatures(input_file, verbose=False):
             json.dump(data, json_file, indent=4)
 
         if verbose:
-            print(f"Digital signatures found in '{input_file}'. Certificate information saved to '{output_file}'.")
+            print("Digital signatures found in '{}'. ".format(input_file) +
+                  "Certificate information saved to '{}'.".format(output_file))
 
     except Exception as e:
         print(f"Error: {e}")
         sys.exit(1)
+
 
 
 def main():
