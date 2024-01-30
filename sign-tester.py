@@ -42,7 +42,6 @@ def check_file_for_signatures(input_file, verbose=False):
         sys.exit(1)
 
 
-
 def main():
     parser = argparse.ArgumentParser(
         description="Check for signatures and generate a JSON report."
