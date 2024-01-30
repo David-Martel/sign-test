@@ -38,10 +38,19 @@ def check_file_for_signatures(input_file, verbose=False):
         print(f"Error: {e}")
         sys.exit(1)
 
+
 def main():
-    parser = argparse.ArgumentParser(description="Check for digital signatures in a file and generate a JSON report.")
-    parser.add_argument("input_file", help="The input file to check for signatures.")
-    parser.add_argument("-v", "--verbose", action="store_true", help="Enable verbose output.")
+    parser = argparse.ArgumentParser(
+        description="Check for signatures and generate a JSON report."
+    )
+    parser.add_argument(
+        "input_file", help="The file to check for signatures."
+    )
+    parser.add_argument(
+        "-v", "--verbose", action="store_true",
+        help="Enable verbose output."
+    )
+
     args = parser.parse_args()
 
     input_file = args.input_file
@@ -49,5 +58,7 @@ def main():
 
     check_file_for_signatures(input_file, verbose)
 
+
 if __name__ == "__main__":
     main()
+
