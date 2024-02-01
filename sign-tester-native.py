@@ -21,8 +21,9 @@ def verify_signature_in_file(input_file, verbose=False):
         # Supported file types
         supported_types = [
             'application/pdf',
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-            ]
+            'application/vnd.openxmlformats-officedocument.'
+            'wordprocessingml.document'
+        ]
         if mime_type not in supported_types:
             if verbose:
                 print(f"'{input_file}' is not a supported.")
@@ -41,7 +42,7 @@ def verify_signature_in_file(input_file, verbose=False):
         # Split the file into data and signature parts
         data, signature = file_contents.split(b'-----BEGIN RSA SIGNATURE-----')
 
-        # Load the public key (assumes it's in the same directory as this script)
+        # Load the public key
         public_key_file = os.path.splitext(input_file)[0] + ".pub"
         with open(public_key_file, 'rb') as key_file:
             public_key = RSA.import_key(key_file.read())
